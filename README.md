@@ -6,7 +6,14 @@ M5: Open Science for Crop Conditions
 The fifth module of our [open climate-science curriculum](https://openclimatescience.github.io/curriculum) focuses on how to begin a reproducible computational science project, using crop conditions as a thematic example. **At the end of this module, you should be able to:**
 
 - Access and utilize satellite-based datasets on plant productivity, condition, and evapotranspiration.
-- Understand how plants link between the carbon and water cycles through photosynthesis and evapotranspiration.
+- Compute an index of the water requirements for agricultural crops
+
+
+Contents
+---------------
+
+1. [Creating a Project Plan](https://github.com/OpenClimateScience/M5-Open-Science-for-Crops/blob/main/notebooks/01_Creating_a_Project_Plan.ipynb)
+2. [Creating a Reproducible Research Environment](https://github.com/OpenClimateScience/M5-Open-Science-for-Crops/blob/main/notebooks/02_Creating_a_Reproducible_Research_Environment.ipynb)
 
 
 Getting Started
@@ -29,6 +36,23 @@ jupyter notebook
 ```sh
 pip install xarray netcdf4 dask
 ```
+
+
+Learning Outcomes
+-----------------
+
+This course covers the following [Core Competencies in Computational Data Science:](https://github.com/OpenClimateScience/Core-Competencies/blob/main/ScienceCore-Competencies.md)
+
+- Records relationships between code, results, and metadata (CC1.5)
+- Uses a package manager to install and manage software dependencies (CC1.10)
+- Can scale up a computational workflow (CC2.6)
+- Understands software releases and versioning (CC4.4)
+
+**In addition, learners will see how to:**
+
+- Use [Pixi](https://pixi.sh/latest/) to manage a software environment and dependencies
+- Use [Snakemake](https://snakemake.github.io/) to automate reproducible tasks
+- Calculate the Water Requirements Satisfaction Index
 
 
 Acknowledgements
