@@ -1,0 +1,9 @@
+rule process_land_cover:
+    input:
+        "data/MCD12Q1/MCD12Q1.A2023001.h18v05.061.2024252125305.hdf"
+    output:
+        "data/processed/MODIS_MCD12Q1_Type5_cereal_croplands_h15v05_2023.tiff"
+    log:
+        "logs/process_land_cover.log"
+    script:
+        "workflows/process_land_cover.py"
