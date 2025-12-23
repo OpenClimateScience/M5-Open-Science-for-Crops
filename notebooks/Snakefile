@@ -1,9 +1,9 @@
+configfile: "config.yaml"
+
 rule download_data:
-    params:
-        dir_mcd12q1="data/MCD12Q1",
-        dir_vnp16a2="data/VNP16A2"
     script:
         "workflows/download_data.py"
+
 
 rule process_land_cover:
     input:
@@ -12,3 +12,8 @@ rule process_land_cover:
         "data/processed/MODIS_MCD12Q1_Type5_cereal_croplands_h15v05_2023.tiff"
     script:
         "workflows/process_land_cover.py"
+
+
+rule process_et:
+    script:
+        "workflows/process_et.py"

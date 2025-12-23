@@ -20,10 +20,10 @@ results_mcd12q1 = earthaccess.search_data(
     short_name = 'MCD12Q1',
     temporal = TIME_PERIOD,
     bounding_box = tuple(bbox))
-earthaccess.download(results_mcd12q1, os.path.dirname(snakemake.params.dir_mcd12q1))
+earthaccess.download(results_mcd12q1, os.path.dirname(snakemake.config['paths']['dir_mcd12q1']))
 
 results_vnp16a2 = earthaccess.search_data(
     short_name = 'VNP16A2GF',
     temporal = TIME_PERIOD,
     bounding_box = tuple(bbox))
-earthaccess.download(results_vnp16a2, os.path.dirname(snakemake.params.dir_vnp16a2))
+earthaccess.download(results_vnp16a2, os.path.dirname(snakemake.config['paths']['dir_vnp16a2']))
