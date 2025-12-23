@@ -1,5 +1,5 @@
 '''
-Downloads ET and PET data from VIIRS VNP16 product, then clips and projects the
+For ET and PET data from VIIRS VNP16 product, clips and projects the
 data onto a 1-km global EASE-Grid 2.0.
 '''
 

@@ -17,3 +17,10 @@ rule process_land_cover:
 rule process_et:
     script:
         "workflows/process_et.py"
+
+
+rule process_precip:
+    input:
+        "data/processed/VNP16_ET_and_PET/VNP16_ET_mm_8day-1_20240101.tiff"
+    script:
+        "workflows/process_precip.py"
