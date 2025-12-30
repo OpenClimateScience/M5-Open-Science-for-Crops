@@ -16,7 +16,8 @@ rule process_land_cover:
 
 rule process_et:
     output:
-        "data/processed/bounds.geojson"
+        "data/processed/bounds.geojson",
+        "data/processed/VNP16_ET_and_PET_mm_day-1.nc4"
     script:
         "workflows/process_et.py"
 
@@ -32,4 +33,6 @@ rule process_precip:
 
 # rule compute_wrsi:
 #     input:
-#         land_cover=
+#         land_cover="data/processed/MODIS_MCD12Q1_Type5_cereal_croplands_h18v05_2023.tiff"
+#         precipitation="data/processed/IMERG_precip_mm_day-1_for_study_area.nc4"
+#         pet="data/processed/VNP16_ET_and_PET_mm_day-1.nc4"

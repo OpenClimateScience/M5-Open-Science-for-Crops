@@ -14,8 +14,6 @@ import rioxarray
 import xarray as xr
 import py4eos
 import pyproj
-import shapely
-from shapely.geometry import Polygon
 from rasterio.warp import calculate_default_transform, reproject, Resampling
 from tqdm import tqdm
 
@@ -48,18 +46,6 @@ def main():
             .rename(band = 'time')\
             .assign_coords(time = [date])
         pet_data.append(pet)
-
-    # Export the bounds of this raster (any one will do) so that it
-    #   can be used in other workflows
-    bb = et0.bounds
-    bounds = Polygon([
-        (bb.left, bb.bottom),
-        (bb.left, bb.top),
-        (bb.right, bb.top),
-        (bb.right, bb.bottom)
-    ])
-    with open(snakemake.output[0], 'w') as file:
-        json.dump(shapely.to_geojson(bounds), file)
 
     # Convert from [mm 8day-1] to [mm day-1]
     ds_et0 = xr.concat(et_data, dim = 'time').to_dataset(name = 'ET') / 8.0
