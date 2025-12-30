@@ -5,18 +5,21 @@ data onto a 1-km global EASE-Grid 2.0.
 
 import datetime
 import glob
+import json
 import os
 import numpy as np
 import h5py
 import rasterio
 import py4eos
 import pyproj
+import shapely
+from shapely.geometry import Polygon
 from rasterio.warp import calculate_default_transform, reproject, Resampling
 from tqdm import tqdm
 
 def main():
     # Get a list of all the files
-    file_list = glob.glob(f'{snakemake.config["paths"]["dir_vnp16a2"]}/*.h5')
+    file_list = glob.glob(f'{snakemake.config["inputs"]["vnp16a2"]}/*.h5')
     file_list.sort()
 
     for filename in tqdm(file_list):
@@ -25,10 +28,23 @@ def main():
         # Convert the date to a YYYYMMDD string
         date_str = date.strftime('%Y%m%d')
         # Prepare the output filename
-        output_file_tpl = f'{snakemake.config["paths"]["dir_vnp16a2"]}/VNP16_%s_mm_8day-1_{date_str}.tiff'
         hdf = py4eos.read_file(filename, platform = 'VIIRS')
-        et = reproject_viirs(hdf, 'ET_500m', output_file_tpl % 'ET', driver = 'GTiff')
-        pet = reproject_viirs(hdf, 'PET_500m', output_file_tpl % 'PET', driver = 'GTiff')
+        output_filename = f'{snakemake.config["outputs"]["et"].format(date = date_str)}'
+        et = reproject_viirs(hdf, 'ET_500m', output_filename, driver = 'GTiff')
+        output_filename = f'{snakemake.config["outputs"]["pet"].format(date = date_str)}'
+        pet = reproject_viirs(hdf, 'PET_500m', output_filename, driver = 'GTiff')
+
+    # Export the bounds of this raster (any one will do) so that it
+    #   can be used in other workflows
+    bb = et.bounds
+    bounds = Polygon([
+        (bb.left, bb.bottom),
+        (bb.left, bb.top),
+        (bb.right, bb.top),
+        (bb.right, bb.bottom)
+    ])
+    with open(snakemake.output[0], 'w') as file:
+        json.dump(shapely.to_geojson(bounds), file)
 
 
 def reproject_viirs(hdf, field, output_path = '', driver = 'MEM'):

@@ -11,7 +11,7 @@ import earthaccess
 
 auth = earthaccess.login()
 
-TIME_PERIOD = ('2023-10-01', '2024-09-30')
+TIME_PERIOD = (snakemake.config['date_start'], snakemake.config['date_end'])
 
 # The bounding box for our study area
 bbox = (1.5, 34.0, 8.0, 37.0)
@@ -20,15 +20,15 @@ results_mcd12q1 = earthaccess.search_data(
     short_name = 'MCD12Q1',
     temporal = TIME_PERIOD,
     bounding_box = tuple(bbox))
-earthaccess.download(results_mcd12q1, snakemake.config['paths']['dir_mcd12q1'])
+earthaccess.download(results_mcd12q1, snakemake.config['inputs']['mcd12q1'])
 
 results_vnp16a2 = earthaccess.search_data(
     short_name = 'VNP16A2GF',
     temporal = TIME_PERIOD,
     bounding_box = tuple(bbox))
-earthaccess.download(results_vnp16a2, snakemake.config['paths']['dir_vnp16a2'])
+earthaccess.download(results_vnp16a2, snakemake.config['inputs']['vnp16a2'])
 
 results_imerg = earthaccess.search_data(
     short_name = 'GPM_3IMERGDF',
     temporal = TIME_PERIOD)
-earthaccess.download(results_imerg, snakemake.config['paths']['dir_imerg'])
+earthaccess.download(results_imerg, snakemake.config['inputs']['imerg'])

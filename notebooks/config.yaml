@@ -1,4 +1,33 @@
-paths:
-  dir_mcd12q1: "data/MCD12Q1"
-  dir_vnp16a2: "data/VNP16A2"
-  dir_imerg: "data/IMERG"
+# Input directories, for raw data
+inputs:
+  mcd12q1: "data/MCD12Q1"
+  vnp16a2: "data/VNP16A2"
+  imerg: "data/IMERG"
+# Output files
+outputs:
+  et: "data/processed/VNP16_ET_and_PET/VNP16_ET_mm_8day-1_{date}.tiff"
+  pet: "data/processed/VNP16_ET_and_PET/VNP16_PET_mm_8day-1_{date}.tiff"
+  wrsi: "data/processed/WRSI_for_spring_wheat_Algeria_2023-2024.nc4"
+
+date_start: "2023-10-01"
+date_end: "2024-09-29"
+
+# Parameters specific to the WRSI calculation
+wrsi:
+  # Crop stages for spring wheat in northern Algeria
+  dates:
+    sowing: "2023-10-15"
+    maturity: "2024-04-01"
+    harvest: "2024-06-01"
+  # Field capacity (default for all fields), in (m3 m-3)
+  field_capacity: 0.23
+  # Crop coefficients at Sowing, Maturity, and Harvest stages,
+  #   from FAO 56, Table 12, for Spring Wheat
+  coefficients: [0.3, 1.15, 0.25]
+  # Root depth fractions at Sowing and Harvest stages
+  root_depth_fraction: [0.1, 1.0]
+  # Maximum root depth, in mm
+  root_depth_max: 1500
+  # Critical soil water fraction ("SW_f"), from FAO 56, Table 22,
+  #   for Spring Wheat
+  soil_water_frac_crit: 0.45

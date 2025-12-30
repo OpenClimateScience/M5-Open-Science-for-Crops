@@ -9,18 +9,27 @@ rule process_land_cover:
     input:
         "data/MCD12Q1/MCD12Q1.A2023001.h18v05.061.2024252125305.hdf"
     output:
-        "data/processed/MODIS_MCD12Q1_Type5_cereal_croplands_h15v05_2023.tiff"
+        "data/processed/MODIS_MCD12Q1_Type5_cereal_croplands_h18v05_2023.tiff"
     script:
         "workflows/process_land_cover.py"
 
 
 rule process_et:
+    output:
+        "data/processed/bounds.geojson"
     script:
         "workflows/process_et.py"
 
 
 rule process_precip:
     input:
-        "data/processed/VNP16_ET_and_PET/VNP16_ET_mm_8day-1_20240101.tiff"
+        "data/processed/bounds.geojson"
+    output:
+        "data/processed/IMERG_precip_mm_day-1_for_study_area.nc4"
     script:
         "workflows/process_precip.py"
+
+
+# rule compute_wrsi:
+#     input:
+#         land_cover=
