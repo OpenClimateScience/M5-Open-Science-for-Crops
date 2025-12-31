@@ -14,6 +14,8 @@ Contents
 
 1. [Creating a Project Plan](https://github.com/OpenClimateScience/M5-Open-Science-for-Crops/blob/main/notebooks/01_Creating_a_Project_Plan.ipynb)
 2. [Creating a Reproducible Research Environment](https://github.com/OpenClimateScience/M5-Open-Science-for-Crops/blob/main/notebooks/02_Creating_a_Reproducible_Research_Environment.ipynb)
+3. [Setting Up Data Processing Workflows](https://github.com/OpenClimateScience/M5-Open-Science-for-Crops/blob/main/notebooks/03_Setting_Up_Data_Processing_Workflows.ipynb)
+4. [Writing a Transparent Algorithm](https://github.com/OpenClimateScience/M5-Open-Science-for-Crops/blob/main/notebooks/04_Writing_a_Transparent_Algorithm.ipynb)
 
 
 Getting Started

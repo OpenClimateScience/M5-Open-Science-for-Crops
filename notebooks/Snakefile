@@ -31,8 +31,10 @@ rule process_precip:
         "workflows/process_precip.py"
 
 
-# rule compute_wrsi:
-#     input:
-#         land_cover="data/processed/MODIS_MCD12Q1_Type5_cereal_croplands_h18v05_2023.tiff"
-#         precipitation="data/processed/IMERG_precip_mm_day-1_for_study_area.nc4"
-#         pet="data/processed/VNP16_ET_and_PET_mm_day-1.nc4"
+rule compute_wrsi:
+    input:
+        land_cover="data/processed/MODIS_MCD12Q1_Type5_cereal_croplands_h18v05_2023.tiff",
+        precipitation="data/processed/IMERG_precip_mm_day-1_for_study_area.nc4",
+        pet="data/processed/VNP16_ET_and_PET_mm_day-1.nc4"
+    script:
+        "workflows/compute_wrsi.py"
